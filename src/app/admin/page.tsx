@@ -357,6 +357,7 @@ interface StandaloneSourceScript {
 interface SiteConfig {
   SiteName: string;
   Announcement: string;
+  AnnouncementDisplayMode?: 'once' | 'every';
   SearchDownstreamMaxPage: number;
   SiteInterfaceCacheTime: number;
   DoubanProxyType: string;
@@ -10150,6 +10151,7 @@ const SiteConfigComponent = ({
   const [siteSettings, setSiteSettings] = useState<SiteConfig>({
     SiteName: '',
     Announcement: '',
+    AnnouncementDisplayMode: 'once',
     SearchDownstreamMaxPage: 1,
     SiteInterfaceCacheTime: 7200,
     DoubanProxyType: 'cmliussss-cdn-tencent',
@@ -10304,6 +10306,10 @@ const SiteConfigComponent = ({
           config.SiteConfig.MagnetAcgripReverseProxy || '',
         MagnetNyaaReverseProxy: config.SiteConfig.MagnetNyaaReverseProxy || '',
         EnableComments: config.SiteConfig.EnableComments || false,
+        AnnouncementDisplayMode:
+          config.SiteConfig.AnnouncementDisplayMode === 'every'
+            ? 'every'
+            : 'once',
       });
     }
   }, [config]);
@@ -10460,6 +10466,51 @@ const SiteConfigComponent = ({
           rows={3}
           className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-green-500 focus:border-transparent'
         />
+      </div>
+
+      {/* 公告显示模式 */}
+      <div>
+        <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
+          公告显示模式
+        </label>
+        <div className='flex gap-4'>
+          <label className='inline-flex items-center gap-2 cursor-pointer'>
+            <input
+              type='radio'
+              name='announcementDisplayMode'
+              value='once'
+              checked={siteSettings.AnnouncementDisplayMode !== 'every'}
+              onChange={() =>
+                setSiteSettings((prev) => ({
+                  ...prev,
+                  AnnouncementDisplayMode: 'once',
+                }))
+              }
+              className='text-green-600 focus:ring-green-500'
+            />
+            <span className='text-sm text-gray-700 dark:text-gray-300'>
+              单次显示
+            </span>
+          </label>
+          <label className='inline-flex items-center gap-2 cursor-pointer'>
+            <input
+              type='radio'
+              name='announcementDisplayMode'
+              value='every'
+              checked={siteSettings.AnnouncementDisplayMode === 'every'}
+              onChange={() =>
+                setSiteSettings((prev) => ({
+                  ...prev,
+                  AnnouncementDisplayMode: 'every',
+                }))
+              }
+              className='text-green-600 focus:ring-green-500'
+            />
+            <span className='text-sm text-gray-700 dark:text-gray-300'>
+              每次显示
+            </span>
+          </label>
+        </div>
       </div>
 
       {/* 豆瓣数据源设置 */}

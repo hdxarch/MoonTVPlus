@@ -457,6 +457,7 @@ dockge/komodo 等 docker compose UI 也有自动更新功能
 | SITE_BASE                                | 站点 url                                                     | 形如 https://example.com    | 空                                                           |
 | NEXT_PUBLIC_SITE_NAME                    | 站点名称                                                     | 任意字符串                  | MoonTV                                                       |
 | ANNOUNCEMENT                             | 站点公告                                                     | 任意字符串                  | 本网站仅提供影视信息搜索服务，所有内容均来自第三方网站。本站不存储任何视频资源，不对任何内容的准确性、合法性、完整性负责。 |
+| ANNOUNCEMENT_DISPLAY_MODE                | 公告显示模式                                                 | once、every                 | once                                                        |
 | NEXT_PUBLIC_STORAGE_TYPE                 | 播放记录/收藏的存储方式                                      | redis、kvrocks、upstash、d1 | 无默认，必填字段                                             |
 | KVROCKS_URL                              | kvrocks 连接 url                                             | 连接 url                    | 空                                                           |
 | REDIS_URL                                | redis 连接 url                                               | 连接 url                    | 空                                                           |

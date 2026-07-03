@@ -8,6 +8,8 @@ export interface AdminConfig {
   SiteConfig: {
     SiteName: string;
     Announcement: string;
+    // 公告显示模式：once=单次显示（每个用户每条公告仅显示一次，换公告则重新显示）；every=每次显示（每次打开首页都显示）
+    AnnouncementDisplayMode?: 'once' | 'every';
     SearchDownstreamMaxPage: number;
     SiteInterfaceCacheTime: number;
     DoubanProxyType: string;
